@@ -24,7 +24,7 @@ class DatabaseHelper {
     String path = join(documentsDirectory.path, 'kool_todo.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: 3,
       onCreate: _createDB,
     );
   }
@@ -41,7 +41,8 @@ class DatabaseHelper {
         taskShowAlert INTEGER,
         taskAlertTime TEXT,
         taskStatus TEXT,
-        taskGroupId INTEGER
+        taskGroupId INTEGER,
+        taskDescription TEXT
       )
     ''');
 

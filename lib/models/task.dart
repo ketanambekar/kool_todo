@@ -9,6 +9,7 @@ class Task {
   String taskAlertTime;
   String taskStatus;
   int taskGroupId;
+  String taskDescription; // Add this line
 
   Task({
     this.taskId,
@@ -21,32 +22,40 @@ class Task {
     required this.taskAlertTime,
     required this.taskStatus,
     required this.taskGroupId,
+    required this.taskDescription, // Add this line
   });
 
-  // You can add fromMap and toMap methods for easier database interaction
-  factory Task.fromMap(Map<String, dynamic> json) => Task(
-    taskId: json['taskId'],
-    taskName: json['taskName'],
-    taskCreationDate: json['taskCreationDate'],
-    taskTargetDate: json['taskTargetDate'],
-    taskPriority: json['taskPriority'],
-    taskType: json['taskType'],
-    taskShowAlert: json['taskShowAlert'],
-    taskAlertTime: json['taskAlertTime'],
-    taskStatus: json['taskStatus'],
-    taskGroupId: json['taskGroupId'],
-  );
+  // Add a toMap method to convert the task to a map
+  Map<String, dynamic> toMap() {
+    return {
+      'taskId': taskId,
+      'taskName': taskName,
+      'taskCreationDate': taskCreationDate,
+      'taskTargetDate': taskTargetDate,
+      'taskPriority': taskPriority,
+      'taskType': taskType,
+      'taskShowAlert': taskShowAlert,
+      'taskAlertTime': taskAlertTime,
+      'taskStatus': taskStatus,
+      'taskGroupId': taskGroupId,
+      'taskDescription': taskDescription, // Add this line
+    };
+  }
 
-  Map<String, dynamic> toMap() => {
-    'taskId': taskId,
-    'taskName': taskName,
-    'taskCreationDate': taskCreationDate,
-    'taskTargetDate': taskTargetDate,
-    'taskPriority': taskPriority,
-    'taskType': taskType,
-    'taskShowAlert': taskShowAlert,
-    'taskAlertTime': taskAlertTime,
-    'taskStatus': taskStatus,
-    'taskGroupId': taskGroupId,
-  };
+  // Add a fromMap method to create a task from a map
+  factory Task.fromMap(Map<String, dynamic> map) {
+    return Task(
+      taskId: map['taskId'],
+      taskName: map['taskName'],
+      taskCreationDate: map['taskCreationDate'],
+      taskTargetDate: map['taskTargetDate'],
+      taskPriority: map['taskPriority'],
+      taskType: map['taskType'],
+      taskShowAlert: map['taskShowAlert'],
+      taskAlertTime: map['taskAlertTime'],
+      taskStatus: map['taskStatus'],
+      taskGroupId: map['taskGroupId'],
+      taskDescription: map['taskDescription'], // Add this line
+    );
+  }
 }
